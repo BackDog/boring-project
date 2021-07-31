@@ -2,30 +2,38 @@
 
 const express = require('express');
 const { Server } = require('ws');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
 //93hqxi65
 const server = express();
 
-server.use(express.static(__dirname));
-server.use((req, res) => res.sendFile(INDEX, { root: __dirname }));
-server.listen(PORT, () => console.log('SERVER RUN ON ' + PORT));
+var app = express();
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+app.options('*', cors());
 
-// server.configure(function(){
-//   server.use('/media', express.static(__dirname + '/media'));
-//   server.use(express.static(__dirname + '/public'));
-// });
+var server = app.listen(PORT, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    log("Example app listening at http://%s:%s", host, port);
+});
 
-// server.listen(3000);
+const wss = new Server({ server });
 
-const websocketServer = new Server({ server });
-
-websocketServer.on('connection', function connection(ws) {
-	console.log('CLIENT CONNECTED');
-
-	ws.on('message', function incoming(message) {
-		console.log(message);
-		ws.send('ECHO: ' + message);
-	});
+wss.on('connection', function connection(ws) {
+	console.log('A client connected');
+    ws.on('message', function(message) {
+       wss.clients.forEach((client) => {
+           client.send(message);
+       });
+    });
+  
+    ws.on('close', () => function () {
+      console.log('A client disconnected');
+    });
 });
