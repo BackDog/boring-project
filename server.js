@@ -6,9 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
-const INDEX = '/index.html';
 //93hqxi65
-const server = express();
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -20,7 +18,7 @@ app.options('*', cors());
 var server = app.listen(PORT, function () {
     var host = server.address().address;
     var port = server.address().port;
-    log("Example app listening at http://%s:%s", host, port);
+    console.log("Example app listening at http://%s:%s", host, port);
 });
 
 const wss = new Server({ server });
