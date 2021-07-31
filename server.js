@@ -9,9 +9,9 @@ const INDEX = '/index.html';
 const server = express();
 
 server.use(express.static(__dirname));
-server.use((req, res) => res.sendFile(INDEX, {root: __dirname}));
+server.use((req, res) => res.sendFile(INDEX, { root: __dirname }));
 server.listen(PORT, () => console.log('SERVER RUN ON ' + PORT));
-	
+
 // server.configure(function(){
 //   server.use('/media', express.static(__dirname + '/media'));
 //   server.use(express.static(__dirname + '/public'));
@@ -21,11 +21,11 @@ server.listen(PORT, () => console.log('SERVER RUN ON ' + PORT));
 
 const websocketServer = new Server({ server });
 
-websocketServer.on('connection', function connection(ws){
+websocketServer.on('connection', function connection(ws) {
 	console.log('CLIENT CONNECTED');
-	
-	ws.on('message', function incoming(message){
+
+	ws.on('message', function incoming(message) {
 		console.log(message);
-		ws.send('ECHO: ' +  message);
+		ws.send('ECHO: ' + message);
 	});
 });
