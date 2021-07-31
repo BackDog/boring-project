@@ -1,0 +1,23 @@
+{
+  "name": "boring-project",
+  "version": "1.0.0",
+  "description": "boring-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BackDog/boring-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BackDog/boring-project/issues"
+  },
+  "homepage": "https://github.com/BackDog/boring-project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^8.0.0"
+  }
+}
