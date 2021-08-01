@@ -16,22 +16,22 @@ app.use(cors());
 app.options('*', cors());
 
 var server = app.listen(PORT, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port);
+	var host = server.address().address;
+	var port = server.address().port;
+	console.log("Example app listening at http://%s:%s", host, port);
 });
 
 const wss = new Server({ server });
 
 wss.on('connection', function connection(ws) {
 	console.log('A client connected');
-    ws.on('message', function(message) {
-       wss.clients.forEach((client) => {
-           client.send(message);
-       });
-    });
-  
-    ws.on('close', () => function () {
-      console.log('A client disconnected');
-    });
+	ws.on('message', function (message) {
+		wss.clients.forEach((client) => {
+			client.send(message.toString());
+		});
+	});
+
+	ws.on('close', () => function () {
+		console.log('A client disconnected');
+	});
 });
