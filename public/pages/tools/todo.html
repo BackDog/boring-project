@@ -1,17 +1,59 @@
-<h2>Todo</h2>
-<div ng-controller="TodoListController as todoList">
-  <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-  [ <a href="" ng-click="todoList.archive()">archive</a> ]
-  <ul class="unstyled">
-    <li ng-repeat="todo in todoList.todos">
-      <label class="checkbox">
-        <input type="checkbox" ng-model="todo.done">
-        <span class="done-{{todo.done}}">{{todo.text}}</span>
-      </label>
-    </li>
-  </ul>
-  <form ng-submit="todoList.addTodo()">
-    <input type="text" ng-model="todoList.todoText" size="30" placeholder="add new todo here">
-    <input class="btn-primary" type="submit" value="add">
-  </form>
+<h2 style="margin: auto">Todo App</h2>
+<div style="background-color: #333; max-width: 500px; margin: auto; border-radius: 4px;
+ padding: 12px; color: white;">
+
+  <div ng-controller="TodoListController as todoList">
+    <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+    [ <a href="" ng-click="todoList.archive()">archive</a> ]
+    <ul class="unstyled">
+      <li ng-repeat="todo in todoList.todos">
+        <label class="checkbox">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </label>
+      </li>
+    </ul>
+    <div ng-submit="todoList.addTodo()">
+      <input type="text" class="input" ng-model="todoList.todoText" 
+      style="width: calc(100% - 80px); border-top-right-radius: 0; border-bottom-right-radius: 0;" 
+      placeholder="Thêm công việc cần hoành thành">
+      <button type="button" class="btn-add"
+      ng-click="todoList.addTodo()">+</button>
+    </div>
+  </div>
 </div>
+<style>
+.btn-add {
+  width: 38px;
+  height: 28px; 
+  margin-left: -8px;
+  border-radius: 0; 
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px; 
+  border: 1px solid rgb(0 0 0 / 0.3);
+  transition: 0.3s;
+  font-weight: 700;
+}
+.btn-add:hover {
+  color: white;
+  background-color: rgb(110 0 0 / 0.5);
+}
+.input {
+  padding: 0px 12px;
+  margin: 12px 4px 12px 4px;
+  height: 26px;
+  border: 1px solid rgb(0 0 0 / 0.3);
+  border-radius: 10px;
+  transition: 0.2s;
+  box-shadow: inset 1px 1px 4px rgb(0 0 0 / 0.5);
+}
+.input:hover {
+  color: white;
+  background-color: rgb(110 0 0 / 0.5);
+}
+.input:focus {
+  color: white;
+  background-color: rgb(110 0 0 / 0.5);
+  outline: none;
+}
+</style>

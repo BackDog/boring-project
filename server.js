@@ -25,6 +25,7 @@ const wss = new Server({ server });
 
 wss.on('connection', function connection(ws) {
 	console.log('A client connected');
+	ws.send('server connected');
 	ws.on('message', function (message) {
 		wss.clients.forEach((client) => {
 			client.send(message.toString());

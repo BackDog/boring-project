@@ -93,8 +93,11 @@ app.controller('MenuController', function ($scope) {
     }
   }
 });
-
-app.controller('TodoListController', function ($scope) {
+app.controller('MainController', function ($scope) {
+  var mainCtrl = this;
+  window.document.title = "Boring Project";
+});
+app.controller('TodoListController', function ($scope) { 
   var todoList = this;
   todoList.todos = [
     { text: 'learn AngularJS', done: true },

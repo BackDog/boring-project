@@ -8,20 +8,20 @@
     <div>
         <div></span>&nbsp;&nbsp;&nbsp;Online Chat</div>
     </div>
-    <div
-        style="height: calc(100% - 98px) !important; overflow-y: visible; overflow-x: hidden; width: 100%;font-size: 13px; text-align: left; color: black;"
+    <div style="height: 500px; overflow-y: visible; overflow-x: hidden; 
+    width: 100%;font-size: 13px; text-align: left; color: black; background-color: white;"
         id="chat-box">
     </div>
-    <div ng-if="liveID">
-
+    <div>
         <input type="text" id="chat-input" placeholder="Enter your message..."
             style="width: 80%; height: 40px; color: black;">
-        <button type="button" >&nbsp;send</span>
+        <button type="button" click="websocket.send('send')">&nbsp;send</span>
         </button>
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    console.log('run');
     $(document).ready(function () {
         $('#chat-input').on('keypress', function (e) {
             if (e.keyCode == 13) {
@@ -31,9 +31,10 @@
         });
     });
 
-    var wsUri = "wss://vchat-rabbit.herokuapp.com/";
+    var wsUri = "wss://boring-rabbit.herokuapp.com/";
 
     function init() {
+        console.log('init');
         output = document.getElementById("chat-box");
         testWebSocket();
     }
@@ -72,5 +73,6 @@
         }
         output.scrollTop = output.scrollHeight;
     };
-    int();
+    init();
 </script>
+<script></script>
