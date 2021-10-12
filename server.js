@@ -5,7 +5,7 @@ const { Server } = require('ws');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 //93hqxi65
 
 var app = express();
